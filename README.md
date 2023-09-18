@@ -34,7 +34,7 @@ velike zahteve što se tiče efikasnosti i brzine u smilsu velikih prenosa podat
 
 korisnika, TCP je bolji izbor.
 
-2\. Rate Limit - ?
+2\. Rate Limit - Svi
 
 2\.1 Server ima da stalno prima informacije, što znači da je ranjiv na DDoS/DoS napade
 
@@ -48,7 +48,7 @@ napada, serveri imaju više vremena da odreaguju na napad i diskonektuju napada�
 
 zahvaljujući rate limit-u.
 
-3\. CyberSecurity - ?
+3\. CyberSecurity - Svi
 
 3\.1 Svaki server treba da bude u mogćnosti da se zaštiti od napada na njega (DDoS/DoS,
 
