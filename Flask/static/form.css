@@ -9,7 +9,6 @@ body, html {
 	top: 0px;
 	left: 50%;
 	transform: translateX(-50%);
-	top: 25%;
 	min-width: 350px;
 	margin: 0 auto;
 	border: 1px solid black;
@@ -71,9 +70,4 @@ body, html {
   	position: fixed;
   	top: 0px;
   	z-index:1;
-}
-
-img {
-	height: 100px;
-	width: 100px;
 }
