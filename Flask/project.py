@@ -2,7 +2,8 @@ from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static', static_folder='static')
+
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -15,12 +16,10 @@ def login():
     return render_template('index.html', error=error)
 
 app.config['UPLOAD_FOLDER'] = 'files' 
+@app.route('/', methods=["GET", "POST"])
 
-@app.route('/')
-def home():
-    return render_template('login.html')
 
-@app.route('/upload', methods=["POST"])
+@app.route('/upload', methods=["GET","POST"])
 def upload_file():
     if "file" in request.files:
         file = request.files["file"]
