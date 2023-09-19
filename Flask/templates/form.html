@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <title>Projekat Multivitamin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <meta charset="UTF-8">
+  <title>Projekat Multivitamin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
-
-<h2>Upload a File</h2>
-<form action="/upload" method="post" enctype="multipart/form-data">
-    <input type="file" name="file">
-    <input type="submit" value="Upload">
-</form>
-
+<!-- partial:index.partial.html -->
+<div class="container">
+    <div id="login-box">
+        <div class="logo">
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type=file name=file>
+                <input type=submit value=Upload>
+              </form>
+        </div>
+    </div>
+</div>
+<div id="particles-js"></div>
+<!-- partial -->
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+<script src='https://code.jquery.com/jquery-1.11.1.min.js'></script><script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
+    

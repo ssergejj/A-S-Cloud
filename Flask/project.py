@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,flash, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 
-app = Flask(__name__, static_url_path='/static', static_folder='static')
+UPLOAD_FOLDER = r'C:\Users\admin\Documents\VSC\A-S-Cloud\Flask'
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
@@ -15,21 +19,14 @@ def login():
             return redirect(url_for('home'))
     return render_template('index.html', error=error)
 
-app.config['UPLOAD_FOLDER'] = 'files' 
-@app.route('/', methods=["GET", "POST"])
-
-
-@app.route('/upload', methods=["GET","POST"])
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    return render_template('form.html')
+    file=request.files['file']
 def upload_file():
-    if "file" in request.files:
-        file = request.files["file"]
-        if file.filename != '':
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return "File uploaded successfully"
-
-    return "File not uploaded"
-
+    if request.method == 'POST':
+        import os
+        upload.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename))
 
 if __name__ == '__main__':
     app.run(debug=True)
