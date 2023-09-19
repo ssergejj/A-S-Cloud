@@ -27,6 +27,7 @@ body, html {
 #login-box .logo .tweak {
 	color: #b1c900;
 }
+
 #login-box .controls {
 	padding-top: 30px;
 }
@@ -47,14 +48,14 @@ body, html {
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px;
 }
-#login-box button.btn-custom {
+#login-box input.btn-custom {
 	border-radius: 2px;
 	margin-top: 8px;
 	background:#b1c900;
 	border-color: rgba(48, 46, 45, 1);
 	color: white;
 }
-#login-box button.btn-custom:hover{
+#login-box input.btn-custom:hover{
 	-webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
