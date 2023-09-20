@@ -5,7 +5,7 @@ import json
 import shutil
 import zipfile
 
-UPLOAD_FOLDER = r'C:\Users\admin\Documents\VSC\A-S-Cloud\Flask\upload_folder'
+UPLOAD_FOLDER = r'Uploads'
 user_data = {}
 
 app = Flask(__name__)
@@ -85,7 +85,7 @@ def upload_file():
 
 @app.route("/download")
 def file_browser():
-    current_directory = os.getcwd()
+    current_directory = 'Uploads'
     items = list_files_and_dirs(current_directory)
 
     return render_template('download.html', current_directory=current_directory, items=items)
