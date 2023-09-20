@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,flash, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, make_response
 from werkzeug.utils import secure_filename
 import os
 import json
@@ -7,7 +7,6 @@ UPLOAD_FOLDER = r'C:\Users\admin\Documents\VSC\A-S-Cloud\Flask'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 # Route for handling the login page logic
 @app.route('/', methods=['GET', 'POST'])
@@ -26,7 +25,7 @@ def submit_data():
 
     # Get data from the form
     data['username'] = request.form['username']
-    data['password'] = request.form['password']
+    data['password'] =  request.form['password']
 
     # Save the data to a JSON file
     with open('data.json', 'a') as json_file:
@@ -38,7 +37,7 @@ def submit_data():
 @app.route("/menu", methods=['GET', 'POST'])
 def menu():
     return render_template('nav.html')
-    
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     return render_template('form.html')
