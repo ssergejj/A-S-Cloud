@@ -30,7 +30,7 @@ def submit_data():
 
     # Save the data to a JSON file
     with open('data.json', 'a') as json_file:
-        json.dump(data, json_file)
+        json.dump("user", (data, json_file))
         json_file.write('\n')  # Add a newline to separate entries
 
     return redirect(url_for('menu'))
