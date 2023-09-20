@@ -11,14 +11,19 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="container">
-    <div id="login-box">
-        <div class="logo">
-            <form action="/upload" method="POST" enctype="multipart/form-data">
-                <input type=file name=file>
-                <input type=submit value=Upload>
-              </form>
-        </div>
-    </div>
+	<div id="login-box">
+		<div class="logo">
+			<img src="/static/ISP.png" class="img img-responsive img-circle center-block"/>
+			<h1 class="logo-caption"><span class="tweak">P</span>rojekat <span class="tweak">M</span>ultivitamin</h1>
+		</div><!-- /.logo -->
+		<form action="/do_login" method="post">
+			<div class="controls">
+				<input type="text" name="username" id="username" placeholder="Username" class="form-control" />
+				<input type="password" name="password" id="password" placeholder="Password" class="form-control" />
+				<input type="submit" value="Login" id="submit" class="btn btn-default btn-block btn-custom">Login</input>
+			</form>
+		</div>
+	</div>
 </div>
 <div id="particles-js"></div>
 <!-- partial -->
@@ -27,4 +32,3 @@
 
 </body>
 </html>
-    

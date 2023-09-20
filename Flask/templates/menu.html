@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+     <title> Projekat Multivitamin </title> 
+     <link rel="stylesheet" href="{{ url_for('static', filename='nav.css') }}">
+   </head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <div class="logo">
+        <a href="#"><span class="tweak">P</span>rojekat <span class="tweak">M</span>ultivitamin </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('upload') }}">Upload</a></li>
+        <li><a href="{{ url_for('file_browser') }}">Download</a></liz>
+      </ul>
+    </div>
+  </nav>
+  <section class="home">
+    <div class="text">
+      <div class="animation">
+        <img src="/static/ISP.png" id="ISP">
+      </div>
+      <h1>Welcome</h1>
+    </div>
+  </section>
+
+
+  <script>
+  let nav = document.querySelector("nav");
+    window.onscroll = function() {
+      if(document.documentElement.scrollTop > 20){
+        nav.classList.add("sticky");
+      }else {
+        nav.classList.remove("sticky");
+      }
+    }
+  </script>
+
+</body>
+</html>

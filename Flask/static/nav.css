@@ -95,3 +95,31 @@ h2{
     color: #FFA215;
     background: #27285C;
 }
+
+h1 {
+  font-size: 70px;
+  color: white;
+}
+
+.text {
+  padding-top: 150px;
+  text-align: center;
+}
+
+#ISP {
+  animation-name: ISP;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: 150px;
+  height: 150px;
+}
+
+@keyframes ISP {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}

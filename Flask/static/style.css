@@ -78,3 +78,16 @@ img {
 	height: 100px;
 	width: 100px;
 }
+#file {
+	height: 30vh;
+}
+
+#file::-webkit-file-upload-button {
+	height: 26vh;
+	width: 11vw;
+	border-radius: 2px;
+	margin-top: 8px;
+	background:#FFA215;
+	color: white;
+	border-radius: 5px;
+}
