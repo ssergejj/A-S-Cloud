@@ -10,7 +10,7 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles
             }
           },
           "color": {
-            "value": "#b1c900"
+            "value": "#FFA215"
           },
           "shape": {
             "type": "circle",
@@ -117,4 +117,4 @@ $.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles
       }
     );
 
-});
+});   

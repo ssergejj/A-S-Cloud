@@ -33,8 +33,12 @@ def submit_data():
         json.dump(data, json_file)
         json_file.write('\n')  # Add a newline to separate entries
 
-    return redirect(url_for('upload'))
+    return redirect(url_for('menu'))
 
+@app.route("/menu", methods=['GET', 'POST'])
+def menu():
+    return render_template('nav.html')
+    
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     return render_template('form.html')
