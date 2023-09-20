@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Browser</title>
+</head>
+<body>
+    <h1>File Browser</h1>
+    
+    <h2>Current Directory: {{ current_directory }}</h2>
+    
+    <ul>
+        {% for item, item_path, is_directory in items %}
+            <li>
+                {% if is_directory %}
+                    <a href="{{ url_for('browse_directory', subdirectory=item_path) }}">{{ item }}</a>
+                {% else %}
+                    <a href="{{ url_for('view_file', file_path=item_path) }}">{{ item }}</a>
+                    | <a href="{{ url_for('download_file', file_path=item_path) }}">Download</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" action="{{ url_for('download_folder') }}">
+        <input type="hidden" name="folder_path" value="{{ current_directory }}">
+        <button type="submit">Download Current Folder as ZIP</button>
+    </form>
+    
+    <h3>Download Other Folders:</h3>
+    <ul>
+        {% for item, item_path, is_directory in items %}
+            {% if is_directory and item_path != current_directory %}
+                <li>
+                    <form method="post" action="{{ url_for('download_folder') }}">
+                        <input type="hidden" name="folder_path" value="{{ item_path }}">
+                        <button type="submit">Download {{ item }}</button>
+                    </form>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    
+    <p><a href="{{ url_for('file_browser') }}">Back to top level</a></p>
+</body>
+</html>
