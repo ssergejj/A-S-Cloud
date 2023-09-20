@@ -22,7 +22,11 @@
       <div class="animation">
         <img src="/static/ISP.png" id="ISP">
       </div>
-      <h1>Welcome</h1>
+      <h1>{% if 'user_cookie' in request.cookies %}
+        <p>Welcome {{ request.cookies['user_cookie'] }}</p>
+        {% else %}
+        <p>Welcome Guest</p>
+        {% endif %}</h1>
     </div>
   </section>
 
