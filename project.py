@@ -4,7 +4,7 @@ import os
 import json
 import shutil
 import zipfile
-from cryptography.fernet import Fernet
+import hashlib
 
 UPLOAD_FOLDER = r'Uploads'
 user_data = {}
@@ -33,12 +33,30 @@ def do_login():
     # Login logic (checking user_data, for demonstration purposes)
     username = request.form['username']
     password = request.form['password']
-    
+
     with open('data.json', 'r') as json_file:
         user_data = json.load(json_file)
+
+    # Fetch the correct userID for the entered username
+    user_id_for_username = None
+    for user in user_data['users']:
+        if user["username"] == username:
+            user_id_for_username = user['userID']
+            break
+
+    if user_id_for_username is None:
+        return "Login unsuccessful"
+
+    sett = password + str(user_id_for_username)
+
+     # Encode the concatenated string
+    encoded_sett = sett.encode()
+
+    # Hash the encoded string
+    hashed_set = hashlib.sha3_224(encoded_sett).hexdigest()
     
-    for user in user_data:
-        if user["username"] == username and user["password"] == password:
+    for user in user_data['users']:
+        if user["username"] == username and user["hashed_password"] == hashed_set:
             # Set the cookie to mark the user as authenticated
             resp = make_response(redirect(url_for('menu')))
             resp.set_cookie('user_cookie', username, httponly=True)
@@ -46,22 +64,38 @@ def do_login():
    
     return "Invalid credentials"  
 
-@app.route('/submit_data', methods=['POST'])
+@app.route('/registration', methods=['POST'])
 def submit_data():
     data = {}
     # Get data from the form
     data['username'] = request.form['username']
     data['password'] = request.form['password']
 
-    set= data['username'] + data['password']
-
-    encrypted_set = cipher.encrypt(set.encode())
-
     # Save the data to a JSON file
     with open('data.json') as json_file:
         user_data = json.load(json_file)
+
+    userID = user_data['currentUserID']
+
+    sett = data['password'] + str(userID)
+
+    # Encode the concatenated string
+    encoded_sett = sett.encode()
+
+    # Hash the encoded string
+    hashed_set = hashlib.sha3_224(encoded_sett).hexdigest()
+
+    new_user = {
+        "userID": userID,
+        "username": data['username'],
+        "hashed_password": hashed_set
+    }
+
     
-    user_data.append(encrypted_set)
+    user_data['users'].append(new_user)
+
+    # Increment the currentUserID for the next user
+    user_data['currentUserID'] += 1
     
     with open('data.json', 'w') as json_file:
         json.dump(user_data, json_file)
