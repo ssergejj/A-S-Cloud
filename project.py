@@ -11,6 +11,7 @@ user_data = {}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SECRET_KEY'] = 'b4f6b8316618881be25230831974a68f'
 
 # Route for handling the login page logic
 @app.route('/', methods=['GET', 'POST'])
