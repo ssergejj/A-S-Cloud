@@ -37,32 +37,33 @@ def do_login():
     with open('data.json', 'r') as json_file:
         user_data = json.load(json_file)
 
-    # Fetch the correct userID for the entered username
-    user_id_for_username = None
+    
+    # Try to find the user based on the hashed username
+    user_entry = None
     for user in user_data['users']:
-        if user["username"] == username:
-            user_id_for_username = user['userID']
+        set_username = username + str(user['userID'])
+        encoded_set_username = set_username.encode()
+        hashed_try_username = hashlib.sha3_224(encoded_set_username).hexdigest()
+
+        if user["username"] == hashed_try_username:
+            user_entry = user
             break
 
-    if user_id_for_username is None:
-        return "Login unsuccessful"
+    if user_entry is None:
+        return "Username not found."
 
-    sett = password + str(user_id_for_username)
+    set_password = password + str(user_entry['userID'])
+    encoded_set_password = set_password.encode()
+    hashed_set_password = hashlib.sha3_224(encoded_set_password).hexdigest()
 
-     # Encode the concatenated string
-    encoded_sett = sett.encode()
-
-    # Hash the encoded string
-    hashed_set = hashlib.sha3_224(encoded_sett).hexdigest()
     
-    for user in user_data['users']:
-        if user["username"] == username and user["hashed_password"] == hashed_set:
-            # Set the cookie to mark the user as authenticated
-            resp = make_response(redirect(url_for('menu')))
-            resp.set_cookie('user_cookie', username, httponly=True)
-            return resp
-   
-    return "Invalid credentials"  
+    if user_entry["hashed_password"] == hashed_set_password:
+        resp = make_response(redirect(url_for('menu')))
+        resp.set_cookie('user_cookie', username, httponly=True)
+        return resp
+    else:
+        return "Invalid password."
+    
 
 @app.route('/registration', methods=['POST'])
 def submit_data():
@@ -77,18 +78,21 @@ def submit_data():
 
     userID = user_data['currentUserID']
 
-    sett = data['password'] + str(userID)
+    set_password = data['password'] + str(userID)
+    set_username = data['username'] + str(userID)
 
     # Encode the concatenated string
-    encoded_sett = sett.encode()
+    encoded_set_password = set_password.encode()
+    encoded_set_username = set_username.encode()
 
     # Hash the encoded string
-    hashed_set = hashlib.sha3_224(encoded_sett).hexdigest()
+    hashed_set_password = hashlib.sha3_224(encoded_set_password).hexdigest()
+    hashed_set_username = hashlib.sha3_224(encoded_set_username).hexdigest()
 
     new_user = {
         "userID": userID,
-        "username": data['username'],
-        "hashed_password": hashed_set
+        "username": hashed_set_username,
+        "hashed_password": hashed_set_password
     }
 
     
