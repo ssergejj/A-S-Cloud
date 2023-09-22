@@ -1,0 +1,107 @@
+/* Reset some default browser styles */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the header */
+header {
+    background-color: #0078d4;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Styling for the main content */
+main {
+    padding: 1rem;
+}
+
+.current-directory {
+    background-color: #f2f2f2;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-list ul {
+    list-style: none;
+}
+
+.file-list li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for links */
+a {
+    color: #0078d4;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Styling for folder and file links */
+.folder-link i, .file-link i {
+    margin-right: 0.5rem;
+}
+
+/* Styling for download links */
+.download-link {
+    color: #0078d4;
+}
+
+.download-link:hover {
+    color: #0056b3;
+}
+
+/* Styling for buttons */
+button {
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for folder icons */
+i.fa-folder {
+    color: #0078d4;
+    margin-right: 0.5rem;
+}
+
+/* Styling for download buttons */
+.download-button {
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.download-button i {
+    margin-right: 0.5rem;
+}
+
+.download-button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #0078d4;
+    color: #fff;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Projekat Multivitamin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+	<div id="login-box">
+		<div class="logo">
+			<img src="/static/ISP.png" class="img img-responsive img-circle center-block"/>
+			<h1 class="logo-caption"><span class="tweak">P</span>rojekat <span class="tweak">M</span>ultivitamin</h1>
+		</div><!-- /.logo -->
+		<form action="/submit_data" method="post">
+			<div class="controls">
+				<input type="text" name="username" id="username" placeholder="Username" class="form-control" />
+				<input type="password" name="password" id="password" placeholder="Password" class="form-control" />
+				<input type="submit" value="Register" id="submit" class="btn btn-default btn-block btn-custom">Register</input>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="particles-js"></div>
+<!-- partial -->
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css'></script>
+<script src='https://code.jquery.com/jquery-1.11.1.min.js'></script><script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

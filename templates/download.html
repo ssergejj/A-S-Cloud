@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekat Multivitamin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='download.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>Download - Projekat Multivitamin</h1>
+    </header>
+    <main>
+        <div class="current-directory">
+            <h2>Current Directory: <span>{{ current_directory }}</span></h2>
+        </div>
+        <div class="file-list">
+            <ul>
+                {% for item, item_path, is_directory in items %}
+                    <li>
+                        {% if is_directory %}
+                            <a class="folder-link" href="{{ url_for('browse_directory', subdirectory=item_path) }}">
+                                <i class="fas fa-folder"></i> {{ item }}
+                            </a>
+                        {% else %}
+                            <a class="file-link" href="{{ url_for('view_file', file_path=item_path) }}">{{ item }}</a>
+                            <a class="download-link" href="{{ url_for('download_file', file_path=item_path) }}">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <form method="post" action="{{ url_for('download_folder') }}">
+            <input type="hidden" name="folder_path" value="{{ current_directory }}">
+            <button class="download-button" type="submit"><i class="fas fa-download"></i> Download Current Folder as ZIP</button>
+        </form>
+        <div class="download-others">
+            <h3>Download Other Folders:</h3>
+            <ul>
+                {% for item, item_path, is_directory in items %}
+                    {% if is_directory and item_path != current_directory %}
+                        <li>
+                            <form method="post" action="{{ url_for('download_folder') }}">
+                                <input type="hidden" name="folder_path" value="{{ item_path }}">
+                                <button class="download-button" type="submit"><i class="fas fa-download"></i> Download {{ item }}</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Projekat Multivitamin</p>
+    </footer>
+</body>
+</html>
